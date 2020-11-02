@@ -29,9 +29,18 @@ interface APB_intf (input logic clk);
     property stable_ch;
         @(posedge clk) $rose(PENABLE) |-> $stable(PADDR) ##0 $stable(PWDATA) ##0 $stable(PWRITE) ##0 $stable(PSEL1);
     endproperty
-    property enable_deassert_ch;
-        @(posedge clk) $rose(PENABLE) |-> PREADY |=> $fell(PENABLE);
+    property p1;
+        $rose(PENABLE) |-> PREADY |=> $fell(PENABLE);
     endproperty
+    property p2;
+        $rose(PENABLE) |-> ##[0:$] $rose(PREADY) |=> $fell(PENABLE);
+    endproperty
+    property enable_deassert_ch;
+        @(posedge clk) p1 and p2;
+    endproperty
+    /* property enable_deassert_ch;
+        @(posedge clk) PREADY |=> $fell(PENABLE);
+    endproperty */
 
     assert property (enable_ch) 
         $info("ENABLE DRIVED 1 CYCLE AFTER PSEL1");
