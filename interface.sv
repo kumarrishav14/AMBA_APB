@@ -23,24 +23,30 @@ interface APB_intf (input logic clk);
     modport IPMON(clocking ipmon_cb);
     modport OPMON(clocking opmon_cb);
 
+    // Assertion property to check whether PENABLE is asserted 1 clk after PSEL1 is asserted
     property enable_ch;
         @(posedge clk) $rose(PSEL1) |=> PENABLE;
     endproperty
+
+    // Assertion property to check whether all signal are stable or not during the PENABLE assertion
     property stable_ch;
         @(posedge clk) $rose(PENABLE) |-> $stable(PADDR) ##0 $stable(PWDATA) ##0 $stable(PWRITE) ##0 $stable(PSEL1);
     endproperty
-    property p1;
-        $rose(PENABLE) |-> PREADY |=> $fell(PENABLE);
-    endproperty
-    property p2;
-        $rose(PENABLE) |-> ##[0:$] $rose(PREADY) |=> $fell(PENABLE);
-    endproperty
+
+    // Assertion to check whether the PENABLE is deasserted 1 clk after PREADY signal is asserted
+    sequence s1;
+        !($past(PENABLE, 2) && $past(PREADY, 2));
+    endsequence
     property enable_deassert_ch;
-        @(posedge clk) p1 and p2;
+        @(posedge clk) $fell(PENABLE) |-> s1;
     endproperty
-    /* property enable_deassert_ch;
-        @(posedge clk) PREADY |=> $fell(PENABLE);
-    endproperty */
+    
+    // Assertion to check whether the PENABLE is deasserted without PREADY being asserted
+    property enable_deassert_ch2;
+        @(posedge clk) 
+        if(!$isunknown(PENABLE))
+            $fell(PENABLE) |-> $past(PREADY) == 1;
+    endproperty
 
     assert property (enable_ch) 
         $info("ENABLE DRIVED 1 CYCLE AFTER PSEL1");
@@ -56,4 +62,9 @@ interface APB_intf (input logic clk);
         $info("PENABLE DEASSERTED 1 CLK AFTER PREADY");
     else
         $error("PENABLE NOT DEASSERTED 1 CLK AFTER PREADY");
+
+    assert property (enable_deassert_ch2) 
+        $info("PENABLE DEASSERTED 1 WHEN PREADY ASSERTED");
+    else
+        $error("PENABLE GETTING DEASSERTED WITHOUT PREADY BEING ASSERTED");
 endinterface
