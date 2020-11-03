@@ -35,6 +35,7 @@ class driver;
     task setup();
         drv_intf.drv_cb.PSEL1   <= 1;
         drv_intf.drv_cb.PENABLE <= 0;
+        drv_intf.drv_cb.PRESETn <= trans.PRESETn;
         drv_intf.drv_cb.PWRITE  <= trans.PWRITE;
         drv_intf.drv_cb.PWDATA  <= trans.PWDATA[i];
         drv_intf.drv_cb.PADDR   <= trans.PADDR[i];
