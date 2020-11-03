@@ -64,7 +64,7 @@ interface APB_intf (input logic clk);
         $error("PENABLE NOT DEASSERTED 1 CLK AFTER PREADY");
 
     assert property (enable_deassert_ch2) 
-        $info("PENABLE DEASSERTED 1 WHEN PREADY ASSERTED");
+        $info("PENABLE DEASSERTED WHEN PREADY ASSERTED");
     else
         $error("PENABLE GETTING DEASSERTED WITHOUT PREADY BEING ASSERTED");
 endinterface
