@@ -14,8 +14,14 @@ class transaction;
 
     //constraint data_val { !PWRITE -> PWDATA == 0}
     constraint arr_size {
-        PWDATA.size() inside {[1:3]}; 
-        PADDR.size() inside {[1:3]};
+        if(!PRESETn) {
+            PWDATA.size() == 1; 
+            PADDR.size() == 1;
+        }
+        else {
+            PWDATA.size() inside {[1:3]}; 
+            PADDR.size() inside {[1:3]};
+        }
         PWDATA.size() == PADDR.size();
     }
     constraint reset_dist { PRESETn dist {0:=10, 1:=90}; }
@@ -28,6 +34,17 @@ class transaction;
     function new();
         
     endfunction //new()
+
+    function void increaseSize();
+        if(PWDATA.size() == 0)
+            PWDATA = new[1];
+        else
+            PWDATA = new[PWDATA.size()+1] (PWDATA);
+        if(PADDR.size() == 0)
+            PADDR = new[1];
+        else
+            PADDR = new[PADDR.size()+1] (PADDR);    
+    endfunction
 
     function void printf(string message);
         $display("[%0t] %s", $time, message);
