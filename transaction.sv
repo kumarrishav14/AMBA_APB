@@ -1,5 +1,5 @@
 class transaction;
-    bit [8:0] p_id;
+    static bit [8:0] p_id;
     bit [3:0] f_id;
     rand bit PWRITE;
     rand bit[31:0] PWDATA [];
@@ -20,12 +20,18 @@ class transaction;
     }
     constraint reset_dist { PRESETn dist {0:=10, 1:=90}; }
     constraint sel_dist { PSEL1 dist {0:=10, 1:=90}; }
+
+    function void pre_randomize();
+        p_id++;
+    endfunction
+
     function new();
         
     endfunction //new()
 
     function void printf(string message);
         $display("[%0t] %s", $time, message);
+        $display("Packet ID: %0d, Feature ID: %0d", p_id, f_id);
         $displayh("Input to DUT: PWRITE = %b, PRESETn = %b, PSEL1 = %b, PWDATA = %p, PADDR = %p", PWRITE, PRESETn, PSEL1, PWDATA, PADDR);
         $displayh("OUPUT from DUT: PREADY = %b, PRDATA = %p, PSLVERR = %b", PREADY, PRDATA, PSLVERR);
     endfunction
