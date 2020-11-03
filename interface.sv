@@ -10,7 +10,8 @@ interface APB_intf (input logic clk);
     logic PSEL1;
 
     clocking drv_cb @(posedge clk);
-        output PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1; 
+        output PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1;
+        input PREADY; 
     endclocking
     clocking ipmon_cb @(posedge clk);
         input PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1; 
