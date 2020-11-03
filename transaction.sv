@@ -35,6 +35,9 @@ class transaction;
         
     endfunction //new()
 
+    // Increases the size of the dynamic array. Helper function for IP/OP monitor which needs to
+    // sample data and store in array (as monitor does not know the size of the transfer thus needs
+    // to increase and add value dynamically)
     function void increaseSize();
         if(PWDATA.size() == 0)
             PWDATA = new[1];

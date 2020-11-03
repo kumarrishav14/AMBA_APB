@@ -1,3 +1,6 @@
+/*  Driver is implemeted using the different operating states of the APB Protocol. The different states are 
+    implemented as task. The drive task switches between different state according to the PREADY signal and 
+    the no of transfers that needs to be done. */
 class driver;
     virtual APB_intf.DRV drv_intf;
     mailbox #(transaction) gen2drv;
@@ -14,6 +17,29 @@ class driver;
         trans = new;
     endfunction //new()
 
+    // idle task - IDLE operating state
+    task idle();
+        drv_intf.drv_cb.PSEL1   <= 0;
+        drv_intf.drv_cb.PENABLE <= 0;
+    endtask //idle
+
+    // setup task - SETUP operating state (Sets all the input for the slave)
+    task setup();
+        drv_intf.drv_cb.PSEL1   <= 1;
+        drv_intf.drv_cb.PENABLE <= 0;
+        drv_intf.drv_cb.PRESETn <= trans.PRESETn;
+        drv_intf.drv_cb.PWRITE  <= trans.PWRITE;
+        drv_intf.drv_cb.PWDATA  <= trans.PWDATA[i];
+        drv_intf.drv_cb.PADDR   <= trans.PADDR[i];
+    endtask
+
+    // access task - ACCESS operating state
+    task access();
+        drv_intf.drv_cb.PSEL1   <= 1;
+        drv_intf.drv_cb.PENABLE <= 1;
+    endtask
+
+    // drive task - Switches b/w different operating states
     task drive();
         for(i=0; i<trans.PADDR.size(); i++) begin
             @(drv_intf.drv_cb);
@@ -27,24 +53,8 @@ class driver;
         idle();
     endtask
 
-    task idle();
-        drv_intf.drv_cb.PSEL1   <= 0;
-        drv_intf.drv_cb.PENABLE <= 0;
-    endtask //idle
-
-    task setup();
-        drv_intf.drv_cb.PSEL1   <= 1;
-        drv_intf.drv_cb.PENABLE <= 0;
-        drv_intf.drv_cb.PRESETn <= trans.PRESETn;
-        drv_intf.drv_cb.PWRITE  <= trans.PWRITE;
-        drv_intf.drv_cb.PWDATA  <= trans.PWDATA[i];
-        drv_intf.drv_cb.PADDR   <= trans.PADDR[i];
-    endtask
-
-    task access();
-        drv_intf.drv_cb.PSEL1   <= 1;
-        drv_intf.drv_cb.PENABLE <= 1;
-    endtask
+    // Entry point of the driver class. Starts driver and triggers event that a
+    // particular packet transfer is completed.
     task start();
         fork
             forever begin
