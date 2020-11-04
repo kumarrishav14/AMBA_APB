@@ -10,8 +10,8 @@ class op_monitor;
     int i;
     bit sampled;
 
-    function new(virtual APB_intf.OPMON ipmon_intf, mailbox #(transaction) ipmon2opmon, event drv_done);
-        this.ipmon_intf = ipmon_intf;
+    function new(virtual APB_intf.OPMON opmon_intf, mailbox #(transaction) ipmon2opmon, event drv_done);
+        this.opmon_intf = opmon_intf;
         this.ipmon2opmon = ipmon2opmon;
         this.drv_done = drv_done;
 
@@ -26,7 +26,6 @@ class op_monitor;
         @(opmon_intf.opmon_cb);
         if(opmon_intf.opmon_cb.PREADY == 1 && opmon_intf.opmon_cb.PENABLE == 1) begin
             trans.PSLVERR = opmon_intf.opmon_cb.PSLVERR;
-            trans.increaseSize();
             trans.PRDATA[i]  = opmon_intf.opmon_cb.PRDATA;
             i++;
         end      
