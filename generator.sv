@@ -26,7 +26,7 @@ class generator;
                 trans2drv = new trans;
                 trans2drv.printf("TO DRV");
                 gen2drv.put(trans2drv);
-                @(drv_done);
+                @(drv_done); #2;
             end
         join_none
     endtask

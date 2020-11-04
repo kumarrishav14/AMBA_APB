@@ -6,6 +6,7 @@ class transaction;
     rand bit[31:0] PADDR [];
     rand bit PRESETn;
     rand bit PSEL1;
+    rand bit error_case;
     bit PENABLE;
 
     bit PREADY;
@@ -26,6 +27,14 @@ class transaction;
     }
     constraint reset_dist { PRESETn dist {0:=10, 1:=90}; }
     constraint sel_dist { PSEL1 dist {0:=10, 1:=90}; }
+    constraint err_case_dist { error_case dist {1:=10, 0:=90}; }
+
+    // Constraint for a specific memory of 4KB, can be commented for general use
+    constraint paddr_val {
+        !error_case -> 
+            foreach(PADDR[i]) 
+                PADDR[i] inside {[0:(2**4)-1]};
+    }
 
     function void pre_randomize();
         p_id++;

@@ -1,7 +1,7 @@
 class op_monitor;
 // Interface and communication variables
     virtual APB_intf.OPMON opmon_intf;
-    mailbox #(transaction) ipmon2opmon;
+    mailbox #(transaction) opmon2sb;
     event drv_done;
 
     transaction trans, trans2sb;
@@ -10,9 +10,9 @@ class op_monitor;
     int i;
     bit sampled;
 
-    function new(virtual APB_intf.OPMON opmon_intf, mailbox #(transaction) ipmon2opmon, event drv_done);
+    function new(virtual APB_intf.OPMON opmon_intf, mailbox #(transaction) opmon2sb, event drv_done);
         this.opmon_intf = opmon_intf;
-        this.ipmon2opmon = ipmon2opmon;
+        this.opmon2sb = opmon2sb;
         this.drv_done = drv_done;
 
         trans = new;
@@ -41,7 +41,7 @@ class op_monitor;
                 if(drv_done.triggered) begin
                     trans2sb = new trans;
                     trans2sb.printf("SAMPLED PACKET IN OPMON");
-                    ipmon2opmon.put(trans2sb);
+                    opmon2sb.put(trans2sb);
                     trans = new;
                     i = 0;
                 end
