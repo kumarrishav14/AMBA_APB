@@ -23,7 +23,7 @@ interface APB_intf (input logic clk);
         input PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1; 
     endclocking
     clocking opmon_cb @(posedge clk);
-        input PRDATA, PREADY, PSLVERR; 
+        input PRDATA, PREADY, PSLVERR, PENABLE; 
     endclocking
 
     modport DRV (clocking drv_cb);
