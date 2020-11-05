@@ -3,16 +3,19 @@ class scoreboard;
     mailbox #(transaction) opmon2sb;
     event TEST_DONE;
 
-    bit err_occ;
 
     transaction transFrmOP, transFrmRm;
     const int no_of_testcases;
+    const string f_name = "log.txt";
     int i;
+    int file_id;
     function new(mailbox #(transaction) rm2sb, mailbox #(transaction) opmon2sb,
                     int no_of_testcases);
         this.rm2sb = rm2sb;
         this.opmon2sb = opmon2sb;
         this.no_of_testcases = no_of_testcases;
+
+        file_id = $fopen(f_name, "w");
 
         transFrmOP = new;
         transFrmRm = new;
@@ -21,9 +24,11 @@ class scoreboard;
     function void compare();
         if(transFrmOP.compare(transFrmRm)) begin
             $display("Packet ID %0d: \tPASSED", transFrmOP.p_id);
+            $fdisplay(file_id, "Packet ID %0d: \tPASSED", transFrmOP.p_id);
         end
         else begin
             $display("Packet ID %0d: \tFAILED", transFrmOP.p_id);
+            $fdisplay(file_id, "Packet ID %0d: \tFAILED", transFrmOP.p_id);
         end
     endfunction //void compare
 
@@ -39,12 +44,4 @@ class scoreboard;
             end
         join_none
     endtask
-
-    function bit combine(ref transaction tr1, transaction tr2);
-        if(tr1.p_id != tr2.p_id) begin
-            $display("Packet id of transaction recieved from OPMON and REF MODEL is not same");
-            return 1;
-        end
-        
-    endfunction
 endclass //scoreboardq  d
