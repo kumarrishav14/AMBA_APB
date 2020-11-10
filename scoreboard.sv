@@ -8,24 +8,40 @@ class scoreboard;
     transaction transFrmOP, transFrmRm;
 
     // Constants to be used in the code
-    const int no_of_testcases;
+    const real no_of_testcases;
     const string f_name = "log.txt";
 
     int i, pass_cases;
     int file_id;
 
+    bit [31:0] _tempPADDR, _tempPWDATA, _tempRDATA;
+
     // Covergroup for Functional coverage
     covergroup apb_cg; 
         PSEL1: coverpoint transFrmRm.PSEL1 { bins psel1[] = {0, 1}; }
         PWRITE: coverpoint transFrmRm.PWRITE { bins pwrite[] = {0, 1}; }
-        PWDATA: coverpoint transFrmRm.PWDATA { bins pwdata[16] = {[0:32'hffffffff]}; }
-        PADDR: coverpoint transFrmRm.PADDR { bins paddr[16] = {[0:32'hffffffff]}; }
+        PWDATA: coverpoint _tempPWDATA { bins pwdata[16] = {[0:32'hffffffff]}; }
+        PADDR: coverpoint _tempPADDR { bins paddr[16] = {[0:32'hffffffff]}; }
         PREADY: coverpoint transFrmRm.PREADY { bins pready[] = {0, 1}; }
-        PRDATA: coverpoint transFrmRm.PRDATA { bins prdata[16] = {[0:32'hffffffff]}; }
+        PRDATA: coverpoint _tempRDATA { bins prdata[16] = {[0:32'hffffffff]}; }
         PSLVERR: coverpoint transFrmRm.PSLVERR { bins pslverr[] = {0, 1}; }
         PSEL1xPWRITE: cross PSEL1, PWRITE;
         PSEL1xPWRITExPADDR: cross PSEL1, PWRITE, PADDR;
     endgroup
+
+    /* Function for sampling data for coverage
+       It has to be done because the transFrmRm.PADDR and other data signals are unpacked array as they have to 
+       store more than one element for multiple transfer packet. Thus a loop is used and each element is stored 
+       in temperory variable and then sampled.
+       Advantage - Easy to implement    Disadvantage - Lot of signals will be sampled more than once for same value */
+    function void cov_sample;
+        for(int j = 0; j < transFrmRm.PADDR.size(); j++) begin
+            _tempRDATA = transFrmRm.PRDATA[j];
+            _tempPWDATA = transFrmRm.PWDATA[j];
+            _tempPADDR = transFrmRm.PADDR[j];
+            apb_cg.sample();
+        end
+    endfunction
 
     function new(mailbox #(transaction) rm2sb, mailbox #(transaction) opmon2sb,
                     int no_of_testcases);
@@ -53,19 +69,16 @@ class scoreboard;
         end
     endfunction //void compare
 
-    function void cv_sample;
-        for(int i =0 ;i< transFrmRm.PWDATA.size(); i++) begin
-            
-        end
-    endfunction
-
     task start();
         fork
             forever begin
                 rm2sb.get(transFrmRm);
                 opmon2sb.get(transFrmOP);
+                transFrmRm.printf("RECIVED FROM RM IN SB");
+                transFrmOP.printf("RECIVED FROM OP IN SB");
+                $display("size: %0d", transFrmOP.PADDR.size());
                 compare();
-                apb_cg.sample();
+                cov_sample;
                 i++;
                 if(i >= no_of_testcases) 
                     ->TEST_DONE;
