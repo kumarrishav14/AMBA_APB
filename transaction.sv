@@ -64,4 +64,16 @@ class transaction;
         $displayh("Input to DUT: PWRITE = %b, PRESETn = %b, PSEL1 = %b, PWDATA = %p, PADDR = %p", PWRITE, PRESETn, PSEL1, PWDATA, PADDR);
         $displayh("OUPUT from DUT: PREADY = %b, PRDATA = %p, PSLVERR = %b", PREADY, PRDATA, PSLVERR);
     endfunction
+
+    function bit compare(transaction trans);
+        if(this.PREADY == trans.PREADY && this.PSLVERR == trans.PSLVERR) begin
+            foreach(this.PRDATA[i]) begin
+                if(this.PRDATA[i] != trans.PRDATA[i])
+                    return 0;
+            end
+            return 1;
+        end
+        else
+            return 0;
+    endfunction //bit compare (transaction)
 endclass //transaction
