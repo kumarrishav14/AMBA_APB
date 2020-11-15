@@ -1,6 +1,9 @@
-vlog test_arch.sv
-vsim -novopt test_arch
+vlog apb_mem.sv
+vlog test_dut.sv
 
-add wave -position insertpoint sim:/test_arch/intf/*
+vsim -novopt test_dut
+
+add wave -position insertpoint sim:/test_dut/*
+add wave -position insertpoint sim:/test_dut/dut/*
 
 run -all
