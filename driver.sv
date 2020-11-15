@@ -25,6 +25,7 @@ class driver;
 
     // setup task - SETUP operating state (Sets all the input for the slave)
     task setup();
+        #2;
         drv_intf.drv_cb.PSEL1   <= 1;
         drv_intf.drv_cb.PENABLE <= 0;
         drv_intf.drv_cb.PRESETn <= trans.PRESETn;
