@@ -21,12 +21,12 @@ class scoreboard;
         PSEL1: coverpoint transFrmRm.PSEL1 { bins psel1[] = {0, 1}; }
         PWRITE: coverpoint transFrmRm.PWRITE { bins pwrite[] = {0, 1}; }
         PWDATA: coverpoint _tempPWDATA { bins pwdata[16] = {[0:32'hffffffff]}; }
-        PADDR: coverpoint _tempPADDR { bins paddr[16] = {[0:32'hffffffff]}; }
+        PADDR: coverpoint _tempPADDR { bins paddr[] = {[0:32'h0000001f]}; }
         PREADY: coverpoint transFrmRm.PREADY { bins pready[] = {0, 1}; }
         PRDATA: coverpoint _tempRDATA { bins prdata[16] = {[0:32'hffffffff]}; }
         PSLVERR: coverpoint transFrmRm.PSLVERR { bins pslverr[] = {0, 1}; }
-        PSEL1xPWRITE: cross PSEL1, PWRITE;
-        PSEL1xPWRITExPADDR: cross PSEL1, PWRITE, PADDR;
+        PSEL1xPWRITE: cross PSEL1, PWRITE { ignore_bins ig_bins = binsof(PSEL1) intersect{0}; }
+        PSEL1xPWRITExPADDR: cross PSEL1, PWRITE, PADDR { ignore_bins ig_bins = binsof(PSEL1) intersect{0}; }
     endgroup
 
     /* Function for sampling data for coverage
