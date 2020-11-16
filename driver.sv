@@ -25,7 +25,7 @@ class driver;
 
     // setup task - SETUP operating state (Sets all the input for the slave)
     task setup();
-        #2;
+        // #2;
         drv_intf.drv_cb.PSEL1   <= 1;
         drv_intf.drv_cb.PENABLE <= 0;
         drv_intf.drv_cb.PRESETn <= trans.PRESETn;
@@ -42,14 +42,22 @@ class driver;
 
     // drive task - Switches b/w different operating states
     task drive();
-        for(i=0; i<trans.PADDR.size(); i++) begin
+        if(!trans.PRESETn) begin
             @(drv_intf.drv_cb);
-            setup();
-            @(drv_intf.drv_cb);
-            access();
-            wait(drv_intf.drv_cb.PREADY == 1);
-            if (!(i == trans.PADDR.size()-1))
+            drv_intf.drv_cb.PRESETn <= trans.PRESETn;
+            #10;
+            drv_intf.drv_cb.PRESETn <= 1;
+        end
+        else begin    
+            for(i=0; i<trans.PADDR.size(); i++) begin
+                @(drv_intf.drv_cb);
                 setup();
+                @(drv_intf.drv_cb);
+                access();
+                wait(drv_intf.drv_cb.PREADY == 1);
+                if (!(i == trans.PADDR.size()-1))
+                    setup();
+            end
         end
         idle();
     endtask
@@ -61,7 +69,7 @@ class driver;
             forever begin
                 idle();
                 gen2drv.get(trans);
-                trans.printf("FROM GENERATOR");
+                //trans.printf("FROM GENERATOR");
                 drive();
                 ->drv_done;
             end
