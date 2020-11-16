@@ -21,12 +21,23 @@ class generator;
 
     task start();
         fork
-            for (int i = 0; i < no_of_testcases; i++) begin
-                run();
+            begin
+                trans.p_id = 1;
+                trans.f_id = 5; 
+                trans.PRESETn = 0;
+                trans.PADDR = {32'h0};
+                trans.PWDATA = {32'h0};
                 trans2drv = new trans;
                 trans2drv.printf("TO DRV");
                 gen2drv.put(trans2drv);
                 @(drv_done); #2;
+                for (int i = 0; i < no_of_testcases-1; i++) begin
+                    run();
+                    trans2drv = new trans;
+                    trans2drv.printf("TO DRV");
+                    gen2drv.put(trans2drv);
+                    @(drv_done); #2;
+                end
             end
         join_none
     endtask

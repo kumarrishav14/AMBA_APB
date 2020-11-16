@@ -25,6 +25,7 @@ class op_monitor;
     task monitor();
         @(opmon_intf.opmon_cb);
         if(opmon_intf.opmon_cb.PREADY == 1 && opmon_intf.opmon_cb.PENABLE == 1) begin
+            trans.PREADY = opmon_intf.opmon_cb.PREADY;
             trans.PSLVERR = opmon_intf.opmon_cb.PSLVERR;
             trans.PRDATA[i]  = opmon_intf.opmon_cb.PRDATA;
             i++;
