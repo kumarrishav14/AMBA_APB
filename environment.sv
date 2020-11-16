@@ -30,14 +30,19 @@ class environment;
         ipmon_intf = intf;
         opmon_intf = intf;
 
+        gen2drv = new();
+        ipmon2rm = new();
+        opmon2sb = new();
+        rm2sb = new();
+
         this.no_of_testcases = no_of_testcases;
     endfunction //new()
 
     task build();
         gen = new(gen2drv, drv_done, no_of_testcases);
-        drv = new(intf, gen2drv, drv_done);
-        ipmon = new(intf, ipmon2rm, drv_done);
-        opmon = new(intf, opmon2sb, drv_done);
+        drv = new(drv_intf, gen2drv, drv_done);
+        ipmon = new(ipmon_intf, ipmon2rm, drv_done);
+        opmon = new(opmon_intf, opmon2sb, drv_done);
         rm = new(ipmon2rm, rm2sb);
         sb = new(rm2sb, opmon2sb, no_of_testcases);
     endtask //build()
