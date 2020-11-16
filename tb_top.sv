@@ -15,7 +15,7 @@ module tb_top;
 
     always #5 clk = ~clk;
 
-    initial begins
+    initial begin
         exp = new(intf);
         exp.run_test();
     end
