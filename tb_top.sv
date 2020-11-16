@@ -15,11 +15,7 @@ module tb_top;
 
     always #5 clk = ~clk;
 
-    initial begin
-        @(posedge clk);
-        intf.drv_cb.PRESETn <= 0;
-        #10;
-        intf.drv_cb.PRESETn <= 1;
+    initial begins
         exp = new(intf);
         exp.run_test();
     end

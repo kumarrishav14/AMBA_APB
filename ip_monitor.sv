@@ -24,8 +24,8 @@ class ip_monitor;
     endfunction //new()
 
     /*  monitor task will sample the signals only when the PENABLE is HIGH (all signals are stable). Also
-        as the PENABLE can be HIGH for more than 1 cycle due to wait cycles, the data is sampled only once
-        per PENABLE high. 
+        as the PENABLE can be HIGH for more than 1 cycle due to wait cycles, but the values needs to be sampled 
+        only once per PENABLE high. 
         NOTE: $rose() does not work. To make $rose() work, implementation is complicated*/
     task monitor();
         @(ipmon_intf.ipmon_cb);
