@@ -1,6 +1,6 @@
 class transaction;
     static bit [8:0] p_id;
-    bit [3:0] f_id;
+    static bit [3:0] f_id;
     rand bit PWRITE;
     rand bit[31:0] PWDATA [];
     rand bit[31:0] PADDR [];
@@ -27,7 +27,7 @@ class transaction;
     }
     constraint reset_dist { PRESETn dist {0:=10, 1:=90}; }
     constraint sel_dist { PSEL1 dist {0:=10, 1:=90}; }
-    constraint err_case_dist { error_case dist {1:=10, 0:=90}; }
+    constraint err_case_dist { error_case dist {1:=5, 0:=100}; }
 
     // Constraint for a specific memory of 4KB, can be commented for general use
     constraint paddr_val {
@@ -38,6 +38,19 @@ class transaction;
 
     function void pre_randomize();
         p_id++;
+    endfunction
+
+    function void post_randomize();
+        if(!PRESETn)
+            f_id = 5;
+        else if (PWRITE && PADDR.size() == 1)
+            f_id = 1;
+        else if (PWRITE && PADDR.size() > 1)
+            f_id = 2;
+        else if (!PWRITE && PADDR.size() == 1)
+            f_id = 3;
+        else if (!PWRITE && PADDR.size() > 1)
+            f_id = 4;
     endfunction
 
     function new();
@@ -67,6 +80,7 @@ class transaction;
 
     function bit compare(transaction trans);
         if(this.PREADY == trans.PREADY && this.PSLVERR == trans.PSLVERR) begin
+        //if(this.PSLVERR == trans.PSLVERR) begin
             foreach(this.PRDATA[i]) begin
                 if(this.PRDATA[i] != trans.PRDATA[i])
                     return 0;

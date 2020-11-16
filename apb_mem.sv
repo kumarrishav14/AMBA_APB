@@ -28,7 +28,7 @@ module apb_mem #(parameter DEPTH = 5) (
         case (_state)
             `IDLE:                
             begin
-                $display("[%0t] In Idle State", $time);
+                //$display("[%0t] In Idle State", $time);
                 delay = $urandom;
                 _PSLVERR <= 0;
                 _PREADY <= 0;
@@ -39,7 +39,7 @@ module apb_mem #(parameter DEPTH = 5) (
                 
             `SETUP:
             begin
-                $display("[%0t] In Setup State", $time);
+                //$display("[%0t] In Setup State", $time);
                 _PREADY <= 0;
                 _PSLVERR<=0;
                 if(_PENABLE) begin
@@ -70,7 +70,7 @@ module apb_mem #(parameter DEPTH = 5) (
 
             `ACCESS:
             begin
-                $display("[%0t] In Access State", $time);
+                //$display("[%0t] In Access State", $time);
                 if(_PWRITE && !_PSLVERR) begin
                     mem[_PADDR[DEPTH-1:0]] = #0 _PWDATA;
                 end

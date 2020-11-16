@@ -1,9 +1,5 @@
-vlog apb_mem.sv
-vlog test_dut.sv
+vlog tb_top.sv
 
-vsim -novopt test_dut
+vsim -novopt tb_top
 
-add wave -position insertpoint sim:/test_dut/*
-add wave -position insertpoint sim:/test_dut/dut/*
-
-run -all
+add wave -position insertpoint sim:/tb_top/intf/*
