@@ -33,7 +33,7 @@ class transaction;
     constraint paddr_val {
         !error_case -> 
             foreach(PADDR[i]) 
-                PADDR[i] inside {[0:(2**4)-1]};
+                PADDR[i] inside {[0:(2**5)-1]};
     }
 
     function void pre_randomize();

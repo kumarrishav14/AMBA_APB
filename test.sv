@@ -20,7 +20,7 @@ class test;
 
     virtual APB_intf intf;
 
-    const int no_of_testcases = 50;
+    int no_of_testcases = 50;
 
     // Handle creation for child classes
     write_transaction wr_trans;
@@ -38,12 +38,16 @@ class test;
        env.build();
        env.run();*/
     task run_test();
+        env.no_of_testcases = 400;
         env.build();
-        env.gen.trans = wr_trans;
         env.run();
-        env.build();
-        env.gen.trans = rd_trans;
-        env.run();
+        // env.no_of_testcases = 50;
+        // env.build();
+        // env.gen.trans = wr_trans;
+        // env.run();
+        // env.build();
+        // env.gen.trans = rd_trans;
+        // env.run();
         #20 $finish;
     endtask //run_test()
 endclass //test

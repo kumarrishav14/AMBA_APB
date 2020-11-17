@@ -41,7 +41,7 @@ class op_monitor;
                 monitor();
                 if(drv_done.triggered) begin
                     trans2sb = new trans;
-                    trans2sb.printf("SAMPLED PACKET IN OPMON");
+                    // trans2sb.printf("SAMPLED PACKET IN OPMON");
                     opmon2sb.put(trans2sb);
                     trans = new;
                     i = 0;

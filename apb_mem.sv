@@ -54,13 +54,14 @@ module apb_mem #(parameter DEPTH = 5) (
                         $error("Invalid data in PWDATA line");
                     end
                     else if(!_PWRITE) begin
+                        _PRDATA <= mem[_PADDR[DEPTH-1:0]];
                         if(mem[_PADDR[DEPTH-1:0]] == 32'hffffffff) begin
                             $display("PADDR is %h and content is %h", _PADDR, mem[_PADDR[DEPTH-1:0]]);
                             _PSLVERR <= 1;
                             $error("Reading data from unwritten address");
                         end
-                        else
-                            _PRDATA <= mem[_PADDR[DEPTH-1:0]];
+                        // else
+                        //     _PRDATA <= mem[_PADDR[DEPTH-1:0]];
                     end
                     _next_state <= `ACCESS;
                 end   
