@@ -24,7 +24,7 @@ class environment;
     mailbox #(transaction) rm2sb;
     event drv_done;
 
-    const int no_of_testcases;
+    int no_of_testcases;
     function new(virtual APB_intf intf, int no_of_testcases);
         drv_intf = intf;
         ipmon_intf = intf;

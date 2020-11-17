@@ -51,7 +51,7 @@ class ip_monitor;
                 monitor();
                 if(drv_done.triggered) begin
                     trans2rm = new trans;
-                    trans2rm.printf("SAMPLED DATA BY IPMON");
+                    // trans2rm.printf("SAMPLED DATA BY IPMON");
                     ipmon2rm.put(trans2rm);
                     trans = new;
                     i =0;

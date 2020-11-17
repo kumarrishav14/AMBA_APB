@@ -45,7 +45,7 @@ class ref_model #(parameter DEPTH = 5);
             end
             else begin
                 if(ram_mem[trans.PADDR[i]] == 32'hffffffff) begin
-                    trans.PRDATA[i] = 32'b0;
+                    trans.PRDATA[i] = 32'hffffffff;
                     trans.PREADY = 1;
                     trans.PSLVERR = 1;
                     continue;

@@ -48,10 +48,12 @@ class driver;
             #10;
             drv_intf.drv_cb.PRESETn <= 1;
         end
-        else begin    
+        else begin  
+            @(drv_intf.drv_cb);
+            setup();  
             for(i=0; i<trans.PADDR.size(); i++) begin
-                @(drv_intf.drv_cb);
-                setup();
+                // @(drv_intf.drv_cb);
+                // setup();
                 @(drv_intf.drv_cb);
                 access();
                 wait(drv_intf.drv_cb.PREADY == 1);
