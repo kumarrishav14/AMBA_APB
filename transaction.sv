@@ -25,9 +25,9 @@ class transaction;
         }
         PWDATA.size() == PADDR.size();
     }
-    constraint reset_dist { PRESETn dist {0:=10, 1:=90}; }
+    constraint reset_dist { PRESETn dist {0:=1, 1:=200}; }
     constraint sel_dist { PSEL1 dist {0:=10, 1:=90}; }
-    constraint err_case_dist { error_case dist {1:=5, 0:=100}; }
+    constraint err_case_dist { error_case dist {1:=5, 0:=100}; } // Generates error test cases
 
     // Constraint for a specific memory of 4KB, can be commented for general use
     constraint paddr_val {

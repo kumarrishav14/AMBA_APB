@@ -54,7 +54,7 @@ class ip_monitor;
                     // trans2rm.printf("SAMPLED DATA BY IPMON");
                     ipmon2rm.put(trans2rm);
                     trans = new;
-                    i =0;
+                    i = 0;
                 end
             end
         join_none

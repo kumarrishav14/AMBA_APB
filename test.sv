@@ -28,7 +28,6 @@ class test;
     function new(virtual APB_intf intf);
         this.intf = intf;
         env = new(intf, no_of_testcases);
-
         // Handle creation for child classes
         wr_trans = new();
         rd_trans = new();
@@ -38,7 +37,7 @@ class test;
        env.build();
        env.run();*/
     task run_test();
-        env.no_of_testcases = 400;
+        env.no_of_testcases = 800;
         env.build();
         env.run();
         // env.no_of_testcases = 50;
