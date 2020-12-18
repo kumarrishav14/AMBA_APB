@@ -38,7 +38,7 @@ class scoreboard;
        It has to be done because the transFrmRm.PADDR and other data signals are unpacked array as they have to 
        store more than one element for multiple transfer packet. Thus a loop is used and each element is stored 
        in temperory variable and then sampled.
-       Advantage - Easy to implement */
+       Advantage - Easy to implement Disadvantage - Lot of signals will be sampled more than once for same value */
     function void cov_sample;
         for(int j = 0; j < transFrmRm.PADDR.size(); j++) begin
             _tempRDATA = transFrmRm.PRDATA[j];

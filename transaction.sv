@@ -5,8 +5,8 @@ class transaction;
     rand bit[31:0] PWDATA [];   
     rand bit[31:0] PADDR [];   
     rand bit PRESETn;
-    rand bit PSEL1;
     rand bit error_case;        // To generate random error case
+    bit PSEL1;
     bit PENABLE;
 
     bit PREADY;
