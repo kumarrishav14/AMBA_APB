@@ -1,10 +1,24 @@
-# AMBA_APB
+# AMBA APB
 
-To design SV test bench for APB protocol slave. Slave is taken as a **single port ram**.
+SV test bench for APB protocol ram (single slave configuration).
+
+## How to run test bench
+
+- Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
+
+  - [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
+  - [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
+
+- Copy the contents in a folder.
+- Compile *tb_top.sv* in any simulator and simulate *top* module.
+
+---
 
 ## Architecture
 
 ![image](image\APB_TB_arch.png)
+
+---
 
 ## Components
 
@@ -46,6 +60,7 @@ endtask
 Drives the packet according to the APB protocol. The drive seqeunce is as follows:
 
 ![image](image\driver.png)
+<img src = "image\driver.png" height=560 alt="driver flow">
 
 ### Input Monitor
 
@@ -63,12 +78,4 @@ Generates the reference output/value, which is compared with the actual output r
 
 Compares the actual packet and the reference packet and generates report for all the test cases.
 
-## How to use
-
-- Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
-
-  - [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
-  - [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
-
-- Copy the contents in a folder.
-- Compile *tb_top.sv* in any simulator and simulate *top* module.
+**_This project is governed by [MIT License](LICENSE)_**
