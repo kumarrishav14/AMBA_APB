@@ -1,12 +1,12 @@
 class transaction;
-    static bit [8:0] p_id;
-    static bit [3:0] f_id;
-    rand bit PWRITE;
-    rand bit[31:0] PWDATA [];
-    rand bit[31:0] PADDR [];
+    static bit [9:0] p_id;      // Packet id
+    static bit [3:0] f_id;      // Feature id
+    rand bit PWRITE;            // Read/Write
+    rand bit[31:0] PWDATA [];   
+    rand bit[31:0] PADDR [];   
     rand bit PRESETn;
     rand bit PSEL1;
-    rand bit error_case;
+    rand bit error_case;        // To generate random error case
     bit PENABLE;
 
     bit PREADY;
@@ -29,7 +29,7 @@ class transaction;
     constraint sel_dist { PSEL1 dist {0:=10, 1:=90}; }
     constraint err_case_dist { error_case dist {1:=5, 0:=100}; } // Generates error test cases
 
-    // Constraint for a specific memory of 4KB, can be commented for general use
+    // Constraint for a specific memory size, can be commented for general use
     constraint paddr_val {
         !error_case -> 
             foreach(PADDR[i]) 

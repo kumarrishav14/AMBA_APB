@@ -1,4 +1,4 @@
-`include "environment.sv"
+
 /* Directed test cases. Overriding the default transaction class to make it directed 
    More cases can be added in here*/
 class write_transaction extends transaction;

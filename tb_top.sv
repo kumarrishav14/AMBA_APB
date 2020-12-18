@@ -1,5 +1,4 @@
-`include "test.sv"
-`include "interface.sv"
+`include "apb_package.svh"
 `include "apb_mem.sv"
 
 module tb_top;

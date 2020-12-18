@@ -44,8 +44,7 @@ class scoreboard;
             _tempRDATA = transFrmRm.PRDATA[j];
             _tempPWDATA = transFrmRm.PWDATA[j];
             _tempPADDR = transFrmRm.PADDR[j];
-            if(j==0)
-                apb_cg.sample();
+            apb_cg.sample();
         end
     endfunction
     //*****************************************************************************************************************************
@@ -118,7 +117,7 @@ class scoreboard;
         $fdisplay(file_id, "Failure rate: %0.02f %%", ((no_of_testcases-pass_cases)/no_of_testcases)*100.0);
         $fdisplay(file_id, "\nFunction coverage is: %0.2f %% ", apb_cg.get_inst_coverage());
         $fdisplay(file_id, "\nFEATURE WISE DETAITLS");
-        $fdisplay(file_id, "Feature id\t\tTotal Cases\t\tPass Cases\t\tFail Cases\t\tFailure Rate");
+        $fdisplay(file_id, "Feature id\tTotal Cases\tPass Cases\tFail Cases\tFailure Rate");
         foreach(feature_status[i]) begin
             total = feature_status[i][0]+feature_status[i][1];
             $fdisplay(file_id, "%0d\t\t%0d\t\t%0d\t\t%0d\t\t%0.2f %%", i, total, feature_status[i][1], 
