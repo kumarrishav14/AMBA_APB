@@ -28,6 +28,7 @@ class transaction;
     bit PSLVERR;
 endclass
 ```
+
 Transaction class also encapsulates helper function like `printf(string message)`, `compare(transaction trans)`, etc.
 
 ### Generator
@@ -61,3 +62,13 @@ Generates the reference output/value, which is compared with the actual output r
 ### Scoreboard
 
 Compares the actual packet and the reference packet and generates report for all the test cases.
+
+## How to use
+
+- Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
+
+  - [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
+  - [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
+
+- Copy the contents in a folder.
+- Compile *tb_top.sv* in any simulator and simulate *top* module.
