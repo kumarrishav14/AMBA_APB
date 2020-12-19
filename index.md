@@ -1,38 +1,83 @@
-(https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
-## Welcome to GitHub Pages
+# AMBA APB
 
-You can use the [editor on GitHub](https://github.com/kumarrishav14/AMBA_APB/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+SV test bench for APB protocol ram (single slave configuration).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## How to run test bench
 
-### Markdown
+- Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  - [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
+  - [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
 
-```markdown
-Syntax highlighted code block
+- Copy the contents in a folder.
+- Compile *tb_top.sv* in any simulator and simulate *top* module.
 
-# Header 1
-## Header 2
-### Header 3
+---
 
-- Bulleted
-- List
+## [APB SV](APB_UVM/README.md)
 
-1. Numbered
-2. List
+## Architecture
 
-**Bold** and _Italic_ and `Code` text
+![image](image\APB_TB_arch.png)
 
-[Link](url) and ![Image](src)
+---
+
+## Components
+
+### Transaction
+
+Signals encapsulated in transaction class is shown below:
+
+```sv
+class transaction;
+    // Input
+    rand bit PWRITE;          
+    rand bit[31:0] PWDATA [];   
+    rand bit[31:0] PADDR [];   
+    rand bit PRESETn;    
+    bit PSEL1;
+    bit PENABLE;
+
+    // Output
+    bit PREADY;
+    bit [31:0] PRDATA [int];
+    bit PSLVERR;
+endclass
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Transaction class also encapsulates helper function like `printf(string message)`, `compare(transaction trans)`, etc.
 
-### Jekyll Themes
+### Generator
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kumarrishav14/AMBA_APB/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Generates new packet which is sent to the driver. Main functionality is to randomize transaction class.
 
-### Support or Contact
+```sv
+task run();
+    assert(trans.randomize());
+endtask
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Driver
+
+Drives the packet according to the APB protocol. The drive seqeunce is as follows:
+
+![image](image\driver.png)
+<img src = "image\driver.png" height=560 alt="driver flow">
+
+### Input Monitor
+
+Monitors the input signals of the APB protocol and when a complete transaction is monitored, it sends the sampled packet to reference model, which generates the expected value.
+
+### Output Monitor
+
+Monitors the output signals of the APB protocol and after complete transaction is monitored it sends the packet to scoreboard for checking.
+
+### Reference Model
+
+Generates the reference output/value, which is compared with the actual output received from the DUT
+
+### Scoreboard
+
+Compares the actual packet and the reference packet and generates report for all the test cases.
+
+**_This project is governed by [MIT License](LICENSE)_**
