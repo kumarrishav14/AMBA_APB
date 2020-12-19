@@ -1,6 +1,7 @@
 ---
-categories: page
+path: page
 title: APB_UVM
+description: UVM Test bench
 ---
 
 # APB UVM
