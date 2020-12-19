@@ -14,11 +14,11 @@ SV test bench for APB protocol ram (single slave configuration).
 
 ---
 
-## [APB SV](APB_UVM/README.md)
+## [APB SV](_pages\apb_sv.md)
 
 ## Architecture
 
-![image](image\APB_TB_arch.png)
+![image](images\APB_TB_arch.png)
 
 ---
 
