@@ -6,7 +6,10 @@ SV test bench for APB protocol ram (single slave configuration).
 
 - Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
   - SV test bench
-
+    <p>
+        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz File</a>
+    </p>
      [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
      [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
 
