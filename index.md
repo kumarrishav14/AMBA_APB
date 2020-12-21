@@ -14,7 +14,7 @@ SV test bench for APB protocol ram (single slave configuration).
 
 ---
 
-## [APB SV](\page\APB_UVM)
+<!-- ## [APB SV](\page\APB_UVM) -->
 
 <!-- ## [APB UVM]({{ site.baseurl }}{% link page/ALU_SV.md %}) -->
 
@@ -64,7 +64,7 @@ endtask
 Drives the packet according to the APB protocol. The drive seqeunce is as follows:
 
 ![image](images\driver.png)
-<img src = "images\driver.png" height=560 alt="driver flow">
+<!-- <img src = "images\driver.png" height=560 alt="driver flow"> -->
 
 ### Input Monitor
 
