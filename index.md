@@ -63,8 +63,8 @@ endtask
 
 Drives the packet according to the APB protocol. The drive seqeunce is as follows:
 
-![image](image\driver.png)
-<img src = "image\driver.png" height=560 alt="driver flow">
+![image](images\driver.png)
+<img src = "images\driver.png" height=560 alt="driver flow">
 
 ### Input Monitor
 
