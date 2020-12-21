@@ -14,10 +14,6 @@ SV test bench for APB protocol ram (single slave configuration).
 
 ---
 
-<!-- ## [APB SV](\page\APB_UVM) -->
-
-<!-- ## [APB UVM]({{ site.baseurl }}{% link page/ALU_SV.md %}) -->
-
 ## Architecture
 
 ![image](images\APB_TB_arch.png)
