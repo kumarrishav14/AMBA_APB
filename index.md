@@ -5,18 +5,17 @@ SV test bench for APB protocol ram (single slave configuration).
 ## How to run test bench
 
 - Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
-  - SV test bench
+  - SV Testbench
     <p>
-        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;<a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
         <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz File</a>
     </p>
-     [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
-     [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
 
-  - UVM Test Becnh
-
-     [zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)
-     [tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz)
+  - UVM Testbench
+    <p>
+        &nbsp;<a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz File</a>
+    </p>
 
 - Copy the contents in a folder.
 - Compile *tb_top.sv* in any simulator and simulate *top* module.
@@ -28,7 +27,7 @@ SV test bench for APB protocol ram (single slave configuration).
 ### Architecture
 
 ![image](images\APB_TB_arch.png)
-<p align=center>Architecture</p>
+<p align=center><b>Fig. 1:</b> Testbench Architecture</p>
 
 ### Components
 
@@ -70,6 +69,7 @@ endtask
 Drives the packet according to the APB protocol. The drive seqeunce is as follows:
 
 ![image](images\driver.png)
+<p align=center><b>Fig. 2:</b>Flow diagram of driver</p>
 <!-- <img src = "images\driver.png" height=560 alt="driver flow"> -->
 
 #### **Input Monitor**
