@@ -30,6 +30,7 @@ import uvm_pkg::*;
         clocking mon_cb @(posedge clk);
             input PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1; 
             input #1 PRDATA, PREADY, PSLVERR;
+            
         endclocking
     
         modport DRV (clocking drv_cb);

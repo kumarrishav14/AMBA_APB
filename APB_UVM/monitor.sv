@@ -11,7 +11,7 @@ class monitor extends uvm_monitor;
     transaction trans;
     int ip_pntr, op_pntr;
     bit sampled;
-    event DRV_DONE;
+    bit pck_complete;
 
     //   Methods
     // -------------
@@ -38,6 +38,7 @@ class monitor extends uvm_monitor;
             trans.PSLVERR = intf.mon_cb.PSLVERR;
             trans.PRDATA[op_pntr]  = intf.mon_cb.PRDATA;
             op_pntr++;
+            pck_complete = 1;
         end 
     endtask
 
@@ -63,17 +64,18 @@ endfunction: build_phase
 
 task monitor::run_phase(uvm_phase phase);
     forever begin
-        
         fork
             ip_mon();
             op_mon();
         join
-        if(DRV_DONE.triggered) begin
+        `uvm_info(get_name(), $sformatf("pck_complete: %b, PSEL1: %b", pck_complete, intf.mon_cb.PSEL1), UVM_HIGH)
+        if(pck_complete && !intf.mon_cb.PSEL1) begin
             `uvm_info(get_name(), $sformatf("Sampled Packet is: %s", trans.convert2string()), UVM_HIGH)
             ap.write(trans);
             trans = new("sam_trans");
             ip_pntr = 0;
             op_pntr = 0;
+            pck_complete = 0;
         end
     end
 endtask: run_phase

@@ -74,7 +74,8 @@ task driver::run_phase(uvm_phase phase);
     forever begin
         seq_item_port.get_next_item(trans_drv);
         drive();
-        ->DRV_DONE;
+        @(drv_intf.drv_cb);
+        // ->DRV_DONE;
         seq_item_port.item_done();
     end
 endtask: run_phase
