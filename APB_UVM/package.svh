@@ -7,4 +7,7 @@
 `include "monitor.sv"
 `include "fun_cov.sv"
 `include "agent.sv"
+`include "ref_model.sv"
+`include "scoreboard.sv"
+`include "environment.sv"
 `include "test.sv"

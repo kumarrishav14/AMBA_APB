@@ -1,6 +1,6 @@
 import uvm_pkg::*;
 
-class ref_model#(parameter DEPTH = 5;) extends uvm_component;
+class ref_model#(parameter DEPTH = 5) extends uvm_component;
     `uvm_component_utils(ref_model)
 
     // Variables
@@ -14,7 +14,7 @@ class ref_model#(parameter DEPTH = 5;) extends uvm_component;
             trans.PSLVERR = 0;
             //trans.PRDATA[0] = 32'b0;
             trans.PREADY = 0;
-            return;
+            return trans;
         end
         for(int i=0; i<trans.PADDR.size(); i++) begin
             if(trans.PADDR[i] >= ram_depth) begin
@@ -54,6 +54,6 @@ class ref_model#(parameter DEPTH = 5;) extends uvm_component;
     // Constructor
     function new(string name, uvm_component parent);
         super.new(name, parent);
-        ram_depth = new[ram_depth];
+        ram_mem = new[ram_depth];
     endfunction //new()
 endclass //ref_model extends uvm_component

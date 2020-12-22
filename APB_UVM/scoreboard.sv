@@ -23,7 +23,14 @@ class scoreboard extends uvm_scoreboard;
             failCnt++;
         end
     endfunction
-    
+
+    // Fuction: write()
+    function void write(transaction trans);
+        act_trans.copy(trans);
+        exp_trans = rm.get_ref_val(trans);
+        check();
+    endfunction
+
     // Constructor: new
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -32,13 +39,10 @@ class scoreboard extends uvm_scoreboard;
     //  Function: build_phase
     extern function void build_phase(uvm_phase phase);
     
-    //  Function: connect_phase
-    extern function void connect_phase(uvm_phase phase);
-    
 endclass //scoreboard extends uvm_scoreboard
 
 function void scoreboard::build_phase(uvm_phase phase);
-    rm = ref_model::type_id::create("rm", this);
+    rm = ref_model#()::type_id::create("rm", this);
     act_trans = new("act_trans");
     ap_exp = new("ap_exp", this);
 endfunction: build_phase
