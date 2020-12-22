@@ -5,7 +5,9 @@ class agent extends uvm_agent;
     //  Group: Variables
     rnd_sequence seq;
     driver drv;
+    monitor mon;
     uvm_sequencer#(transaction) seqr;
+    event DRV_DONE;
 
     //  Group: Constraints
 
@@ -39,6 +41,7 @@ function void agent::build_phase(uvm_phase phase);
     seq = rnd_sequence::type_id::create("seq");
     drv = driver::type_id::create("drv", this);
     seqr = uvm_sequencer#(transaction)::type_id::create("seqr", this);
+    mon = monitor::type_id::create("mon", this);
     
 endfunction: build_phase
 
@@ -46,6 +49,8 @@ function void agent::connect_phase(uvm_phase phase);
     super.connect_phase(phase);
 
     drv.seq_item_port.connect(seqr.seq_item_export);
+    drv.DRV_DONE = DRV_DONE;
+    mon.DRV_DONE = DRV_DONE;
 endfunction: connect_phase
 
 function void agent::end_of_elaboration_phase(uvm_phase phase);
@@ -57,6 +62,7 @@ endfunction: end_of_elaboration_phase
 task agent::run_phase(uvm_phase phase);
     phase.raise_objection(this);
     seq.start(seqr);
+    #200;
     phase.drop_objection(this);
 endtask: run_phase
 

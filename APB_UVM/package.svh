@@ -3,4 +3,5 @@
 `include "transaction.sv"
 `include "rnd_sequence.sv"
 `include "driver.sv"
+`include "monitor.sv"
 `include "agent.sv"
