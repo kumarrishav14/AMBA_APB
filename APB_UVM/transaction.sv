@@ -62,6 +62,20 @@ class transaction extends uvm_sequence_item;
             f_id = 4;
     endfunction
 
+    // Increases the size of the dynamic array. Helper function for IP/OP monitor which needs to
+    // sample data and store in array (as monitor does not know the size of the transfer thus needs
+    // to increase and add value dynamically)
+    function void increaseSize();
+        if(PWDATA.size() == 0)
+            PWDATA = new[1];
+        else
+            PWDATA = new[PWDATA.size()+1] (PWDATA);
+        if(PADDR.size() == 0)
+            PADDR = new[1];
+        else
+            PADDR = new[PADDR.size()+1] (PADDR);    
+    endfunction
+
     //  Constructor: new
     function new(string name = "transaction");
         super.new(name);

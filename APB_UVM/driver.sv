@@ -6,6 +6,7 @@ class driver extends uvm_driver#(transaction);
     transaction trans_drv;
     virtual APB_intf.DRV drv_intf;
     int i;
+    event DRV_DONE;
     
     //  Group: Functions
     // idle task - IDLE operating state
@@ -73,6 +74,8 @@ task driver::run_phase(uvm_phase phase);
     forever begin
         seq_item_port.get_next_item(trans_drv);
         drive();
+        @(drv_intf.drv_cb);
+        // ->DRV_DONE;
         seq_item_port.item_done();
     end
 endtask: run_phase

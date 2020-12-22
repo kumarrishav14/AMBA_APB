@@ -20,16 +20,23 @@ import uvm_pkg::*;
             output PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1;
             input PREADY; 
         endclocking
-        clocking ipmon_cb @(posedge clk);
+        /* clocking ipmon_cb @(posedge clk);
             input PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1; 
         endclocking
         clocking opmon_cb @(posedge clk);
             input #1 PRDATA, PREADY, PSLVERR, PENABLE; 
+        endclocking */
+
+        clocking mon_cb @(posedge clk);
+            input PWRITE, PWDATA, PADDR, PENABLE, PRESETn, PSEL1; 
+            input #1 PRDATA, PREADY, PSLVERR;
+            
         endclocking
     
         modport DRV (clocking drv_cb);
-        modport IPMON(clocking ipmon_cb);
-        modport OPMON(clocking opmon_cb);
+        modport MON(clocking mon_cb);
+        // modport IPMON(clocking ipmon_cb);
+        // modport OPMON(clocking opmon_cb);
 
 
 
@@ -64,22 +71,22 @@ import uvm_pkg::*;
     
         // All properties defined earlier are asserted here.
         assert property (enable_ch)
-            `uvm_info("INTF", "ENABLE DRIVED 1 CYCLE AFTER PSEL1", UVM_HIGH)
+            `uvm_info("INTF", "ENABLE DRIVED 1 CYCLE AFTER PSEL1", UVM_DEBUG)
         else
             `uvm_error("INTF", "ENABLE NOT DRIVED 1 CYCLE AFTER PSEL1")
 
         assert property (stable_ch) 
-            `uvm_info("INTF", "ALL SIGANLS STABLE DURING PENABLE", UVM_HIGH)
+            `uvm_info("INTF", "ALL SIGANLS STABLE DURING PENABLE", UVM_DEBUG)
         else
             `uvm_error("INTF", "ALL SIGANLS NOT STABLE DURING PENABLE")
     
         assert property (enable_deassert_ch) 
-            `uvm_info("INTF", "PENABLE DEASSERTED 1 CLK AFTER PREADY", UVM_HIGH)
+            `uvm_info("INTF", "PENABLE DEASSERTED 1 CLK AFTER PREADY", UVM_DEBUG)
         else
             `uvm_error("INTF", "PENABLE NOT DEASSERTED 1 CLK AFTER PREADY")
     
         assert property (enable_deassert_ch2) 
-            `uvm_info("INTF", "PENABLE DEASSERTED WHEN PREADY ASSERTED", UVM_HIGH)
+            `uvm_info("INTF", "PENABLE DEASSERTED WHEN PREADY ASSERTED", UVM_DEBUG)
         else
             `uvm_error("INTF", "PENABLE GETTING DEASSERTED WITHOUT PREADY BEING ASSERTED")
     endinterface
