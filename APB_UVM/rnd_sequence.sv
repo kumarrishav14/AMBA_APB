@@ -17,7 +17,7 @@ class rnd_sequence extends uvm_sequence;
         super.new(name);
         trans = transaction::type_id::create("trans");
         if(!uvm_config_db#(int)::get(null, "seq.*", "no_cases", no_of_testcases)) begin
-            `uvm_warning(get_name(), "Cant get no of testcases, Using default no of test cases = 100")
+            `uvm_warning(get_name(), "Cant get no of testcases, Using default no of test cases = 10")
             no_of_testcases = 10;
         end
     endfunction: new

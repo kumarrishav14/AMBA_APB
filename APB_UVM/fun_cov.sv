@@ -38,6 +38,7 @@ class fun_cov extends uvm_subscriber#(transaction);
     // Constructor: new
     function new(string name, uvm_component parent);
         super.new(name, parent);
+        apb_cg = new();
     endfunction //new()
 
     function void write(T t);

@@ -22,6 +22,7 @@ class base_test extends uvm_test;
             `uvm_fatal(get_name(), "vif cannot be found in ConfigDB!")
         
         uvm_config_db#(agent_config)::set(this, "agnt.*", "agnt_cfg", agnt_cfg);
+        uvm_config_db#(int)::set(this, "seq.*", "no_cases", 100);
         
         agnt = agent::type_id::create("agnt", this);
     endfunction: build_phase
