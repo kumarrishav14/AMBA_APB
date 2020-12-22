@@ -78,7 +78,6 @@ class transaction extends uvm_sequence_item;
     
 endclass: transaction
 
-
 /*----------------------------------------------------------------------------*/
 /*  Functions                                                                 */
 /*----------------------------------------------------------------------------*/
@@ -107,7 +106,6 @@ function void transaction::do_print(uvm_printer printer);
     
     $swriteh(temp_addr, "%0p", PADDR);
     /*  list of local properties to be printed:  */
-    // printer.print_string("property_label", property_name);
     printer.print_field("PWRITE", PWRITE, $bits(PWRITE), UVM_BIN);
     printer.print_generic("PWDATA", "array", $bits(PWDATA), $sformatf("%p", PWDATA));
     printer.print_generic("PADDR", "array", $bits(PADDR), temp_addr);
@@ -122,9 +120,7 @@ function bit transaction::do_compare(uvm_object rhs, uvm_comparer comparer);
     if (!$cast(rhs_, rhs)) begin
         `uvm_fatal({this.get_name(), ".do_compare()"}, "Cast failed!");
     end
-    // `uvm_info({this.get_name(), ".do_compare()"}, "Cast succeded.", UVM_HIGH);
 
-    /*  chain the compare with parent classes  */
     do_compare = super.do_compare(rhs, comparer);
 
     /*  list of local properties to be compared:  */
@@ -141,12 +137,9 @@ endfunction: do_compare
 
 function string transaction::convert2string();
     string s;
-
-    /*  chain the convert2string with parent classes  */
     s = super.convert2string();
 
     /*  list of local properties to be printed:  */
-    //  guide             0---4---8--12--16--20--24--28--32--36--40--44--48--
     s = {s, $sformatf("Packet ID: %0d, Feature ID: %0d\n", p_id, f_id)};
     s = {s, $sformatf("Input to DUT: PWRITE = %b, PRESETn = %b, PSEL1 = %b, PWDATA = %p, PADDR = %p\n", PWRITE, PRESETn, PSEL1, PWDATA, PADDR)};
     s = {s, $sformatf("OUPUT from DUT: PREADY = %b, PRDATA = %p, PSLVERR = %b", PREADY, PRDATA, PSLVERR)};
