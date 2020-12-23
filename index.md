@@ -8,7 +8,7 @@ Test bench for APB protocol ram (single slave configuration).
 
 - Download the latest release from below or visit the [release page][github-release-link]for more old release.
 
-<table border="2" align="center">
+<table border="1" align="center">
 <thead>
   <tr>
     <th>SV Testbecnh</th>
