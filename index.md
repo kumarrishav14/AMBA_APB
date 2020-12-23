@@ -16,13 +16,9 @@
     :table_custom {
       text-align: center;
     }
-    table {
-        text-align: center;
-        border: 1px solid black;
-    }
 
     th {
-        border-bottom: 1px black;
+        border-bottom: 2px solid black;
         background-color: #4CAF50;
         color: white;
     }
