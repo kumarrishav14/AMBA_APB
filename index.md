@@ -34,17 +34,9 @@ Test bench for APB protocol ram (single slave configuration).
   </tr>
 </tbody>
 </table>
-  - SV Testbench
-    <p>
-        &nbsp;<a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz File</a>
-    </p>
-
-  - UVM Testbench
-    <p>
-        &nbsp;<a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz File</a>
-    </p>
+<p>
+    &NewLine;
+</p>
 
 - Copy the contents in a folder.
 - Compile *tb_top.sv* in any simulator and simulate *top* module.
