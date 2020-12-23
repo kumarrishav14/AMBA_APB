@@ -9,12 +9,14 @@ class fun_cov extends uvm_subscriber#(transaction);
 
     // Covergroup for Functional coverage
     covergroup apb_cg; 
-        PSEL1: coverpoint trans.PSEL1 { bins psel1[] = {0, 1}; }
+        PSEL1: coverpoint trans.PSEL1 { bins psel1 = {1}; 
+                                        illegal_bins il_psel1= {0}; }
         PWRITE: coverpoint trans.PWRITE { bins pwrite[] = {0, 1}; }
         PWDATA: coverpoint _tempPWDATA { bins pwdata[16] = {[0:32'hffffffff]}; }
         PADDR: coverpoint _tempPADDR { bins paddr[] = {[0:32'h0000001f]}; 
                                        illegal_bins il_paddr = default; }
-        PREADY: coverpoint trans.PREADY { bins pready[] = {0, 1}; }
+        PREADY: coverpoint trans.PREADY { bins pready = {1};
+                                          illegal_bins il_pready= {0}; }
         PRDATA: coverpoint _tempRDATA { bins prdata[16] = {[0:32'hffffffff]}; }
         PSLVERR: coverpoint trans.PSLVERR { bins pslverr[] = {0, 1}; }
         PSEL1xPWRITE: cross PSEL1, PWRITE { ignore_bins ig_bins = binsof(PSEL1) intersect{0}; }
