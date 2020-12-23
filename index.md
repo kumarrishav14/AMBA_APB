@@ -12,6 +12,22 @@
       padding: 2px;
       text-align: center;
     }
+
+    table {
+        text-align: center;
+        border: 1px solid black;
+        width: 70%;
+    }
+
+    th {
+        border: 1px solid black;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    td {
+        border: 1px solid black;
+    }
 </style>
 
 Test bench for APB protocol ram (single slave configuration).
@@ -61,8 +77,10 @@ Test bench for APB protocol ram (single slave configuration).
 
 ### Architecture
 
-![image](images\APB_TB_arch.png)
-<p align=center><b>Fig. 1:</b> Testbench Architecture</p>
+<figure>
+    <img src="images/APB_TB_arch.png"/>
+    <figcaption><b>Fig. 1:</b> Testbench Architecture</figcaption>
+</figure>
 
 ### Components
 
