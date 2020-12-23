@@ -13,10 +13,12 @@
       text-align: center;
     }
 
+    :table_custom {
+      text-align: center;
+    }
     table {
         text-align: center;
         border: 1px solid black;
-        width: 250px;
     }
 
     th {
@@ -37,33 +39,34 @@ Test bench for APB protocol ram (single slave configuration).
 ## How to run test bench
 
 - Download the latest release from below or visit the [release page][github-release-link]for more old release.
-
-<table>
-<thead>
-  <tr>
-    <th>SV Testbecnh</th>
-    <th>UVM Testbench</th>
-  </tr>
-</thead>
-<tbody>
-  <tr align="center">
-    <td>
-        <a href =  "https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip</a>
-    </td>
-    <td>
-        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip</a>
-    </td>
-  </tr>
-  <tr align="center">
-    <td>
-        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz</a>
-    </td>
-    <td>
-        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz</a>
-    </td>
-  </tr>
-</tbody>
-</table>
+<div class="table_custom">
+    <table>
+        <thead>
+        <tr>
+            <th>SV Testbecnh</th>
+            <th>UVM Testbench</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr align="center">
+            <td>
+                <a href =  "https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip</a>
+            </td>
+            <td>
+                <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip</a>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz</a>
+            </td>
+            <td>
+                <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <p>
     &NewLine;
 </p>
