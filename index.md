@@ -9,7 +9,7 @@ Test bench for APB protocol ram (single slave configuration).
 - Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
 
     | SV Testbecnh | UVM Testbench |
-    |:------------:|:-------------:|
+    |------------|-------------|
     |    [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |     [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |
     | [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) | [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) |
   - SV Testbench
