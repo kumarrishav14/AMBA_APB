@@ -2,16 +2,16 @@
 
 Test bench for APB protocol ram (single slave configuration).
 
-| [SV Testbench](#SV-Testbench) | [UVM Testbench](#UVM-Testbench) |
+| [SV Testbench](#sv-testbench) | [UVM Testbench](#uvm-testbench) |
 
 ## How to run test bench
 
 - Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
 
-    | SV Testbecnh | UVM Testbench |
-    |------------|-------------|
-    |    [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |     [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |
-    | [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) | [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) |
+| SV Testbecnh | UVM Testbench |
+|------------|-------------|
+|    [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |     [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |
+| [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) | [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) |
   - SV Testbench
     <p>
         &nbsp;<a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
