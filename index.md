@@ -16,11 +16,11 @@
     table {
         text-align: center;
         border: 1px solid black;
-        width: 70%;
+        width: 250px;
     }
 
     th {
-        border: 1px solid black;
+        border-bottom: 1px black;
         background-color: #4CAF50;
         color: white;
     }
