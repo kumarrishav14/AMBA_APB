@@ -17,13 +17,13 @@ class base_test extends uvm_test;
 
     function void build_phase(uvm_phase phase);
         agnt_cfg = new("agnt_cfg");
-        seq = new();
         if(!uvm_config_db#(virtual APB_intf)::get(this, "*", "vif", agnt_cfg.intf))
             `uvm_fatal(get_name(), "vif cannot be found in ConfigDB!")
         
         uvm_config_db#(agent_config)::set(this, "env.agnt.*", "agnt_cfg", agnt_cfg);
-        uvm_config_db#(int)::set(this, "seq.*", "no_cases", 100);
+        uvm_config_db#(int)::set(null, "seq.*", "no_cases", 100);
         
+        seq = new();
         env = environment::type_id::create("env", this);
     endfunction: build_phase
 
