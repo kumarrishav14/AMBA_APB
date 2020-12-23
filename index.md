@@ -1,4 +1,18 @@
 # AMBA APB
+<style>
+    figure {
+      padding: 4px;
+      margin: auto;
+      text-align: center;
+    }
+    
+    figcaption {
+      color: rgba(0, 134, 125, 0.938);
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+</style>
 
 Test bench for APB protocol ram (single slave configuration).
 
@@ -8,7 +22,7 @@ Test bench for APB protocol ram (single slave configuration).
 
 - Download the latest release from below or visit the [release page][github-release-link]for more old release.
 
-<table border="1">
+<table>
 <thead>
   <tr>
     <th>SV Testbecnh</th>
@@ -89,8 +103,10 @@ endtask
 
 Drives the packet according to the APB protocol. The drive seqeunce is as follows:
 
-![image](images\driver.png)
-<p align=center><b>Fig. 2:</b>Flow diagram of driver</p>
+<figure>
+    <img src="images/driver.png"/>
+    <figcaption> <b>Fig. 2: </b>Driver Flow</figcaption>
+</figure>
 <!-- <img src = "images\driver.png" height=560 alt="driver flow"> -->
 
 #### **Input Monitor**
