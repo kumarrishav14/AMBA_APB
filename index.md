@@ -1,4 +1,3 @@
-# AMBA APB
 <style>
     figure {
       padding: 4px;
@@ -6,6 +5,10 @@
       text-align: center;
     }
     
+    :nav {
+        margin-left: 10px;
+    }
+
     figcaption {
       color: rgba(0, 134, 125, 0.938);
       font-style: italic;
@@ -13,12 +16,10 @@
       text-align: center;
     }
 
-    :table_custom {
-      text-align: center;
-    }
     table {
         margin-left: auto;
         margin-right: auto;
+        width: auto;
     }
     th {
         border-bottom: 2px solid black;
@@ -31,14 +32,11 @@
     }
 </style>
 
-Test bench for APB protocol ram (single slave configuration).
-
-<p><a href="#sv-testbench">SV Testbench</a> | [UVM Testbench](#uvm-testbench)</p>
+<p class="nav"><a href="#sv-testbench">SV Testbench</a> | <a href="#uvm-testbench">UVM Testbench</a> </p>
 
 ## How to run test bench
 
 - Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases) for more releases.
-<div class="table_custom">
     <table align="center">
         <thead>
         <tr>
@@ -65,7 +63,7 @@ Test bench for APB protocol ram (single slave configuration).
         </tr>
         </tbody>
     </table>
-</div>
+
 <p>
     &NewLine;
 </p>
