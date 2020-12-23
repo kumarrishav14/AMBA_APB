@@ -34,7 +34,7 @@ Test bench for APB protocol ram (single slave configuration).
 
 ## How to run test bench
 
-- Download the latest release from below or visit the [release page][github-release-link]for more old release.
+- Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases) for more releases.
 <div class="table_custom">
     <table align="center">
         <thead>
