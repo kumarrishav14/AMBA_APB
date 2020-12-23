@@ -4,7 +4,7 @@ class base_test extends uvm_test;
     `uvm_component_utils(base_test)
     
     // Components
-    agent agnt;
+    environment env;
 
     // Variables
     rnd_sequence seq;
@@ -21,10 +21,10 @@ class base_test extends uvm_test;
         if(!uvm_config_db#(virtual APB_intf)::get(this, "*", "vif", agnt_cfg.intf))
             `uvm_fatal(get_name(), "vif cannot be found in ConfigDB!")
         
-        uvm_config_db#(agent_config)::set(this, "agnt.*", "agnt_cfg", agnt_cfg);
+        uvm_config_db#(agent_config)::set(this, "env.agnt.*", "agnt_cfg", agnt_cfg);
         uvm_config_db#(int)::set(this, "seq.*", "no_cases", 100);
         
-        agnt = agent::type_id::create("agnt", this);
+        env = environment::type_id::create("env", this);
     endfunction: build_phase
 
     function void end_of_elaboration_phase(uvm_phase phase);
@@ -34,7 +34,7 @@ class base_test extends uvm_test;
     
     task run_phase(uvm_phase phase);
         phase.raise_objection(this);
-        seq.start(agnt.seqr);
+        seq.start(env.agnt.seqr);
         #100;
         phase.drop_objection(this);
     endtask: run_phase

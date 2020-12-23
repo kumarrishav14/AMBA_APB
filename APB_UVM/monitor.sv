@@ -69,7 +69,7 @@ task monitor::run_phase(uvm_phase phase);
             op_mon();
         join
         `uvm_info(get_name(), $sformatf("pck_complete: %b, PSEL1: %b", pck_complete, intf.mon_cb.PSEL1), UVM_HIGH)
-        if(pck_complete && !intf.mon_cb.PSEL1) begin
+        if((pck_complete && !intf.mon_cb.PSEL1) || !intf.mon_cb.PRESETn) begin
             `uvm_info(get_name(), $sformatf("Sampled Packet is: %s", trans.convert2string()), UVM_HIGH)
             ap.write(trans);
             trans = new("sam_trans");
