@@ -2,18 +2,38 @@
 
 Test bench for APB protocol ram (single slave configuration).
 
-| [SV Testbench](#sv-testbench) | [UVM Testbench](#uvm-testbench) |
+[SV Testbench](#sv-testbench) | [UVM Testbench](#uvm-testbench)
 
 ## How to run test bench
 
-- Download the latest release from below or visit the [release page](https://github.com/kumarrishav14/AMBA_APB/releases "Release page") for more old release.
+- Download the latest release from below or visit the [release page][github-release-link]for more old release.
 
-| SV Testbecnh | UVM Testbench |
-
-| --- | --- |
-|    [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |     [Zip](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip)    |
-
-| [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) | [Tar.gz](https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz) |
+<table border="2" align="center">
+<thead>
+  <tr>
+    <th>SV Testbecnh</th>
+    <th>UVM Testbench</th>
+  </tr>
+</thead>
+<tbody>
+  <tr align="center">
+    <td>
+        <a href =  "https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip</a>
+    </td>
+    <td>
+        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip</a>
+    </td>
+  </tr>
+  <tr align="center">
+    <td>
+        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz</a>
+    </td>
+    <td>
+        <a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.tar.gz">Tar.gz</a>
+    </td>
+  </tr>
+</tbody>
+</table>
   - SV Testbench
     <p>
         &nbsp;<a href="https://github.com/kumarrishav14/AMBA_APB/archive/v1.0.zip">Zip File</a> &nbsp;&nbsp;&nbsp;&nbsp;
