@@ -1,4 +1,6 @@
 theme: jekyll-theme-cayman
+title: AMBA APB
+description: Testbench for APB protocol DUT (a RAM). This test bench is for single slave configuration.
 # show_downloads: f
 
 markdown: kramdown

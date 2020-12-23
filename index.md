@@ -16,7 +16,10 @@
     :table_custom {
       text-align: center;
     }
-
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
     th {
         border-bottom: 2px solid black;
         background-color: #4CAF50;
@@ -30,7 +33,7 @@
 
 Test bench for APB protocol ram (single slave configuration).
 
-&nbsp;[SV Testbench](#sv-testbench) | [UVM Testbench](#uvm-testbench)
+<p><a href="#sv-testbench">SV Testbench</a> | [UVM Testbench](#uvm-testbench)</p>
 
 ## How to run test bench
 
@@ -39,7 +42,7 @@ Test bench for APB protocol ram (single slave configuration).
     <table align="center">
         <thead>
         <tr>
-            <th>SV Testbecnh</th>
+            <th>SV Testbench</th>
             <th>UVM Testbench</th>
         </tr>
         </thead>
